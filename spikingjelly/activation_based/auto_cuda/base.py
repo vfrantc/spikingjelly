@@ -226,7 +226,7 @@ class CKernel:
 
         ``torch.half`` or ``np.float16`` ------ ``'const half2'`` or ``'half2'``
 
-        ``np.int_``  ------  ``'const int'`` or ``'int'``
+        ``np.int32`` or ``np.int64`` ------ ``'const int'`` or ``'int'``
 
         If not, this function will raise an error.
         """
@@ -246,7 +246,7 @@ class CKernel:
                 elif value.dtype == np.float16:
                     assert startswiths(ctype, ('const half2', 'half2'))
 
-                elif value.dtype == np.int_:
+                elif value.dtype in [np.int32, np.int64]:
                     assert startswiths(ctype, ('const int', 'int'))
 
     def check_half2(self, py_dict: dict):
